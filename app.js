@@ -1,3 +1,4 @@
+// capture input
 const form = document.getElementById("registrar");
 const input = form.querySelector("input");
 const ul = document.getElementById("invitedList");
@@ -9,12 +10,17 @@ form.addEventListener("submit", (e) => {
   input.value = "";
   const li = document.createElement("li");
   li.textContent = text;
+  //added confirmed checkbox
   const label = document.createElement("label");
   label.textContent = "Confirmed";
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   label.appendChild(checkbox);
   li.appendChild(label);
+  //added remove button
+  const button = document.createElement("button");
+  button.textContent = "remove";
+  li.appendChild(button);
   ul.appendChild(li);
 })
 
@@ -30,4 +36,22 @@ ul.addEventListener("change", (e) => {
     listItem.className = "";  
   }
 });
+
+
+ul.addEventListener("click", (e) => {
+  if (e.target.tagName === "BUTTON") {
+    const li = e.target.parentNode;
+    const ul = li.parentNode;
+    ul.removeChild(li);
+  } 
+})
+
+
+
+
+
+
+
+
+
 
