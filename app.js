@@ -52,17 +52,34 @@ ul.addEventListener("change", (e) => {
 
 // remove and edit names - event handlers
 ul.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON") {
-    const button = e.target;
-    const li = e.target.parentNode;
-    const ul = li.parentNode;
-    if (button === "remove") {
-      ul.removeChild(li);
-    } else if (button === "edit") {
-      console.log("edit");
-    }
-  } 
-})
+    if (e.target.tagName === "BUTTON") {
+      const button = e.target;
+      const li = e.target.parentNode;
+      const ul = li.parentNode;
+      if (button === "remove") {
+        ul.removeChild(li);
+      } //edit branch 
+      else if (button.textContent === "edit") {
+        const span = li.firstElementChild;
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = span.textContent;
+        li.insertBefore(input, span);
+        li.removeChild(span);
+        button.textContent = "save";
+       }
+      //save branch
+      else if (button.textContent === "save") {
+        const input = li.firstElementChild;
+        const span = document.createElement("span");
+        span.textContent = input.value;
+        li.insertBefore(span, input);
+        li.removeChild(input);
+        button.textContent = "edit";
+      }
+    } 
+  })
+  
 
 
 
