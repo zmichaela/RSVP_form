@@ -6,8 +6,10 @@ const ul = document.getElementById("invitedList");
 
 //create li functionwith text as a parameter
 function createLi (text) {
-const li = document.createElement("li");
-  li.textContent = text;
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.textContent = text;
+  li.appendChild(span);
   //added confirmed checkbox
   const label = document.createElement("label");
   label.textContent = "Confirmed";
@@ -52,38 +54,36 @@ ul.addEventListener("change", (e) => {
 
 // remove and edit names - event handlers
 ul.addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON") {
-      const button = e.target;
-      const li = e.target.parentNode;
-      const ul = li.parentNode;
-      if (button === "remove") {
-        ul.removeChild(li);
-      } //edit branch 
-      else if (button.textContent === "edit") {
-        const span = li.firstElementChild;
-        const input = document.createElement("input");
-        input.type = "text";
-        input.value = span.textContent;
-        li.insertBefore(input, span);
-        li.removeChild(span);
-        button.textContent = "save";
-       }
-      //save branch
-      else if (button.textContent === "save") {
-        const input = li.firstElementChild;
-        const span = document.createElement("span");
-        span.textContent = input.value;
-        li.insertBefore(span, input);
-        li.removeChild(input);
-        button.textContent = "edit";
-      }
-    } 
-  })
-  
+  if (e.target.tagName === "BUTTON") {
+    const button = e.target;
+    const li = e.target.parentNode;
+    const ul = li.parentNode;
+    if (button === "remove") {
+      ul.removeChild(li);
+    } //edit branch 
+    else if (button.textContent === "edit") {
+      const span = li.firstElementChild;
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = span.textContent;
+      li.insertBefore(input, span);
+      li.removeChild(span);
+      button.textContent = "save";
+     }
+    //save branch
+    else if (button.textContent === "save") {
+      const input = li.firstElementChild;
+      const span = document.createElement("span");
+      span.textContent = input.value;
+      li.insertBefore(span, input);
+      li.removeChild(input);
+      button.textContent = "edit";
+    }
+  } 
+})
 
 
 
-//edit names and save
 
 
 
